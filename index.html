@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WDE - An IDE for WEB Designing</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+  <link rel="stylesheet" href="assets/css/codeflask.css">
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy" />
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	
+    <link rel="stylesheet" href="assets/css/prism.min.css">
+    <script src="assets/js/prism.min.js"></script>
+    <script src="assets/js/codeflask.js"></script>
+    <script src="assets/js/custom.js"></script>
+</head>
+<body>
+
+  <section  id="section_header">
+  	<nav class="navbar navbar-inverse" style="padding: 0;margin:0">
+  		<div class="container-fluid">
+  			<!-- logo -->
+  			<div class="navbar-header">
+  				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  				</button>
+  				<a href="#" class="navbar-brand">WDE<span style="font-size:10px;">An IDE for WEB</span></a>
+  			</div>
+  			<!-- list items -->
+  			<div class="collapse navbar-collapse" id="mainNavBar">
+  				<ul class="nav navbar-nav">
+  					<li class="active" id="html_button"><a href="#" id="html_button">HTML</a></li>  <!-- active class shows that currently working section -->
+  					<li><a href="">Feedback</a></li>
+  					<!--	<li><a href="#">Python</a></li>
+  					<li><a href="#">Java</a></li>   -->
+  					<!-- <li id="about_button"><a href="#" >About</a></li> -->
+					<li><a href="#" >About</a></li>
+  				</ul>
+  			</div>		
+  		</div>	
+  	</nav>
+    <center><div class="img-ronded pull-center" id="event_box" >
+                  
+                  <div class="row" style="width:176px;">
+                    <div class="col-xs-4">
+                      <a href="#" ><span class="glyphicon glyphicon-floppy-disk pull-right" data-toggle="modal" data-target="#save_modal"></span></a>
+                    </div>
+
+                    <div class="col-xs-4">
+
+                      <a href="#" id="reload_page" onclick="Reload_page()"><span class="glyphicon glyphicon-repeat pull-right"></span></a>
+                    </div>
+
+                    <div class="col-xs-4">
+                      <a href="#"><span class="glyphicon glyphicon-cog pull-right" data-toggle="modal" data-target="#settings_box"></span></a>
+                    </div>
+
+                  </div>
+    </div></center>
+  </section>
+<section id="html_part">
+  <section id="code_section"> 
+    <div class="container-fluid" id="editor_box">
+      	<div class="row">
+          <section id="html_section">
+            <div class="col-md-4 col_box" id="html_col_id">
+              <div>
+              <div  class="boxTitle" id="123">
+                 <h3>HTML  
+                  <a href="#" id="maximize_html"><span class="glyphicon glyphicon-fullscreen pull-right"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-tag pull-right"></span></a>
+                 </h3>
+                 
+              </div>
+              <div class="codeview" id="text_html"></div>
+              </div>
+            </div>
+          </section>
+          <section id="css_section">
+           <div class="col-md-4 col_box" id="css_col_id">
+              <div>
+              <div class="boxTitle">
+                 <h3 >CSS
+                    <a href="#" id="maximize_css"><span class="glyphicon glyphicon-fullscreen pull-right"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-tag pull-right"></span></a>
+                    </h3>
+              </div>
+              <div class="codeview" id="text_css"></div>
+              </div>
+            </div>
+          </section>
+          <section id="js_section">
+             <div class="col-md-4 col_box" id="js_col_id"> 
+              <div>
+              <div class="boxTitle">
+                 <h3 >JS
+                    <a href="#" id="maximize_js"><span class="glyphicon glyphicon-fullscreen pull-right"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-tag pull-right"></span></a>
+                 </h3>
+              </div>
+              <div class="codeview" id="text_js"></div>
+              </div>
+            </div>
+          </section>
+      	</div>	
+    </div>
+  </section>
+<br>
+  <section id="output_section">
+  	<div class="container-fluid pull-up" id="output_box">
+  				<h3 class="boxTitle">Output
+              <a href="#"><span class="glyphicon glyphicon-fullscreen pull-right" id="maximize_output"></span></a>
+              <a href="#"><span class="glyphicon glyphicon-tag pull-right"></span></a>
+              <a href="#"><span class="glyphicon glyphicon-refresh pull-right" onclick="Refresh()"></span></a>
+
+          </h3>
+  				<iframe height="760px" width="100%" srcdoc='<I><font size="5">output will be displayed here..</font><I>' id="frameId"></iframe>
+  	</div>
+  </section>
+ <!-- settings modal -->
+    <div class="modal fade" id="settings_box">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header --> 
+                  <div class="modal-header alert-success" style="padding-top:10px;"> 
+                    <button class="close" type="button" data-dismiss="modal">&times;</button>
+                    <h3 style="margin:10px; margin-bottom: 0px;" >Editor's settings</h3>    
+                  </div>
+
+                <!-- body -->
+                  <div class="modal-body">
+                    <div class="row">     
+                      <div style="margin-left: 2em; margin-right: 2em;">
+                          <h4>Font Properties</h4>
+                          <label for="font_size">Font Size</label>
+                          <select id="font_size" name="font-size" class="form-control">
+                              <option>8</option>
+                               <option>10</option>
+                                <option>12</option>
+                                 <option>14</option>
+                                  <option>15</option>
+                                   <option>16</option>
+                                    <option>18</option>
+                                     <option>20</option>
+                                      <option>22</option>
+                                       <option>24</option>
+                                        <option>26</option>
+                                         <option>28</option>
+                                          <option>30</option>
+                          </select><br>
+                          <label for="font_bold">Bold</label><input type="checkbox" id="font_bold" ><br>
+                          <label for="font_italic">Italic</label><input type="checkbox" id="font_italic">
+                        </div>
+                       </div>
+
+                       <hr >  
+
+                        <div class="row">
+                         <div style="margin-left: 2em; margin-right: 2em;">
+                            <h4>Themes</h4>
+                            <select id="editor_theme" name="theme" class="form-control">
+                              <option>Default</option>
+                                <option>Sublime</option>
+                                 <option>Nodepad++</option>
+                                  <option>Mac Classic</option>
+                                   <option>iPlasti</option>
+                            </select><br>
+                          </div>
+                        </div>      
+                  </div>
+                <!-- footer -->
+                <div class="modal-footer">
+                  <button class="btn btn-block btn-info" id="save_settings" onclick="Settings()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="modal fade" id="save_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header --> 
+                  <div class="modal-header alert-success" style="padding-top:10px;"> 
+                    <button class="close" type="button" data-dismiss="modal">&times;</button>
+                    <h3 style="margin:10px; margin-bottom: 0px;" >File name</h3>    
+                  </div>
+
+                <!-- body -->
+                  <div class="modal-body">
+                       <label for="file_name"></label> 
+                       <input type="text" name="file_name" id="file_name" class="form-control">   
+                       <span class="alert-danger">*without .html</span>    
+                  </div>
+                <!-- footer -->
+                <div class="modal-footer">
+                    <a href="#" id="save_file"  onclick="Download()" data-dismiss="" style="text-decoration: none;"><button class="btn btn-info btn-block">Save</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- <section id="about">
+<br><br><br><br><br><br>
+    <center>
+    <h1 style="font-size: 70px;">WDE <span style="font-size: 20px;"><I>An IDE for Web</I></span></h1>
+    <h1>Developed by: Ankush P.</h1>
+    <h4>Email Id: apotgante@gmail.com</h4>
+    </center>
+</section> -->
+
+  <script src="./index.js">
+      
+  </script>
+
+
+</body>
+</html>
